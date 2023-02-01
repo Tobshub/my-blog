@@ -1,0 +1,76 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  /* colors */
+  --palette-pink: hsl(333, 93%, 56%);
+  --palette-purple: hsl(276, 91%, 38%);
+  --palette-dark-purple: hsl(258, 86%, 34%);
+  --palette-blue: hsl(229, 83%, 60%);
+  --palette-cyan: hsl(194, 85%, 62%);
+  --palette-white: hsl(276, 91%, 96%);
+  --palette-black: hsl(258, 86%, 4%);
+}
+
+/* css reset */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100vw;
+  width: 100dvw;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --palette-text: hsl(276, 91%, 96%);
+    --palette-background: hsl(258, 86%, 4%);
+
+    p {
+      text-shadow: 0 0 0.2rem var(--palette-text);
+    }
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --palette-background: hsl(276, 91%, 96%);
+    --palette-text: hsl(276, 91%, 4%);
+    --palette-cyan: hsl(194, 85%, 30%);
+
+    p {
+      text-shadow: 0 0.4rem 0.1rem var(--palette-text);
+    }
+  }
+}
+
+.page {
+  padding: 0 4rem;
+  background-color: var(--palette-background);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: var(--palette-text);
+  width: 100vw;
+  width: 100dvw;
+  min-height: 100vh;
+  height: fit-content;
+  position: relative;
+}
+
