@@ -1,13 +1,30 @@
 import { QueryClientProvider } from "@tanstack/react-query";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import { queryClient, trpcClient } from "./lib/query";
-import IndexPage from "./pages";
+import BlogIndex from "./pages/blog";
+import RenderBlog, { loader as renderBlogLoader } from "./pages/blog/render";
+import HomePage from "./pages/home";
 import trpc from "./utils/trpc";
 
 const clientRouter = createBrowserRouter([
   {
     index: true,
-    element: <IndexPage />,
+    element: <HomePage />,
+  },
+  {
+    path: "/blog",
+    element: <Outlet />,
+    children: [
+      {
+        index: true,
+        element: <BlogIndex />,
+      },
+      {
+        path: ":slug",
+        loader: renderBlogLoader,
+        element: <RenderBlog />,
+      },
+    ],
   },
 ]);
 

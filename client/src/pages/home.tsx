@@ -4,7 +4,7 @@ import CodingPersonWLaptopSVG from "../assets/images/man&laptop.webp";
 import BackgroundSVG from "../assets/images/background.svg";
 import ContactMan from "../assets/images/contact-man.png";
 
-export default function IndexPage() {
+export default function HomePage() {
   return (
     <div
       className={`page `}
@@ -31,7 +31,7 @@ export default function IndexPage() {
       <PageNavBar />
       <main
         className={`d-flex flex-column align-items-center`}
-        style={{ paddingTop: "10rem", gap: "8rem" }}
+        style={{ gap: "4rem" }}
       >
         <div className="w-100 d-flex justify-content-around align-items-center">
           <div>
