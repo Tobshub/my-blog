@@ -39,6 +39,7 @@ export default function PageNavBar() {
         width: "100dvw",
         backgroundColor: darken ? "var(--palette-background)" : "transparent",
         transition: "background-color 350ms",
+        marginBottom: "5rem",
       }}
     >
       <style>{`
