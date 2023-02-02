@@ -1,5 +1,6 @@
 import { PropsWithChildren, useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { NavHashLink } from "react-router-hash-link";
 
 export default function PageNavBar() {
   // grab the root div
@@ -52,7 +53,7 @@ export default function PageNavBar() {
       </h1>
       <nav className="nav navbar navbar-expand-lg">
         <ul className="navbar-nav flex-row  gap-4 fs-4 font-weight-bold">
-          <NavItem to="/">Home</NavItem>
+          <NavItem to="/#top">Home</NavItem>
           <NavItem to="/#about">About</NavItem>
           <NavItem to="/blog">Blog</NavItem>
           <NavItem to="/#contact-me">Contact Me</NavItem>
@@ -74,14 +75,25 @@ function NavItem(props: PropsWithChildren & { to: string }) {
           border-image: linear-gradient(var(--palette-pink), var(--palette-cyan)) 15;
         }
       `}</style>
-      <NavLink
-        to={props.to}
-        className={({ isActive }) =>
-          `nav-link text-reset ${isActive ? "active" : ""}`
-        }
-      >
-        {props.children}
-      </NavLink>
+      {props.to.includes("#") ? (
+        <NavHashLink
+          smooth={true}
+          to={props.to}
+          activeClassName={"active"}
+          className={`nav-link text-reset`}
+        >
+          {props.children}
+        </NavHashLink>
+      ) : (
+        <NavLink
+          to={props.to}
+          className={({ isActive }) =>
+            `nav-link text-reset ${isActive ? "active" : ""}`
+          }
+        >
+          {props.children}
+        </NavLink>
+      )}
     </li>
   );
 }

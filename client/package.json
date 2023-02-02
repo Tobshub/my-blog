@@ -14,10 +14,12 @@
     "@trpc/client": "^10.9.1",
     "@trpc/react-query": "^10.9.1",
     "@trpc/server": "^10.9.1",
+    "@types/react-router-hash-link": "^2.4.5",
     "bootstrap": "^5.2.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.0",
+    "react-router-hash-link": "^2.4.3",
     "sass": "^1.58.0"
   },
   "devDependencies": {

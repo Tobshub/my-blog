@@ -34,7 +34,7 @@ export default function HomePage() {
         style={{ gap: "4rem" }}
       >
         <div className="w-100 d-flex justify-content-around align-items-center">
-          <div>
+          <div id="top" style={{ scrollMarginTop: "4rem" }}>
             <h1 className="display-2" style={{ fontWeight: 600 }}>
               Hey!
             </h1>
@@ -66,7 +66,9 @@ export default function HomePage() {
             }}
           />
           <div>
-            <h1 id="about">About</h1>
+            <h1 id="about" style={{ scrollMarginTop: "5rem" }}>
+              About
+            </h1>
             <p style={{ fontWeight: 500, maxWidth: 525, float: "right" }}>
               My name is Tobani Esan-George (AKA Tobs). I love{" "}
               <a
@@ -95,7 +97,9 @@ export default function HomePage() {
         </div>
         <div className="w-100 d-flex align-items-center justify-content-between">
           <div>
-            <h1 id="contact-me">Contact Me</h1>
+            <h1 id="contact-me" style={{ scrollMarginTop: "5rem" }}>
+              Contact Me
+            </h1>
             <p style={{ fontWeight: 500, maxWidth: 525 }}>
               Email:{" "}
               <a href="mailto:tobanigeorge@gmail.com">tobanigeorge@gmail.com</a>
