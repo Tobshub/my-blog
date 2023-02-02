@@ -15,7 +15,7 @@ export const queryClient = new QueryClient({
 export const trpcClient = trpc.createClient({
   links: [
     httpBatchLink({
-      url: `${env.SERVER_URL}`,
+      url: `${env.SERVER_URL}/api`,
     }),
   ],
 });
