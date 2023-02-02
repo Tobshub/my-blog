@@ -33,7 +33,7 @@ export default function PageNavBar() {
     <header
       className={`d-flex w-100 align-items-center justify-content-around`}
       style={{
-        position: "fixed",
+        position: "sticky",
         top: 0,
         left: 0,
         width: "100dvw",
@@ -53,7 +53,7 @@ export default function PageNavBar() {
         <ul className="navbar-nav flex-row  gap-4 fs-4 font-weight-bold">
           <NavItem to="/">Home</NavItem>
           <NavItem to="/#about">About</NavItem>
-          <NavItem to="/blogs">Blogs</NavItem>
+          <NavItem to="/blog">Blog</NavItem>
           <NavItem to="/#contact-me">Contact Me</NavItem>
         </ul>
       </nav>
