@@ -11,18 +11,12 @@ datasource db {
 }
 
 model Post {
-  id       String   @id @default(auto()) @map("_id") @db.ObjectId
-  slug     String   @unique
-  title    String
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  slug        String   @unique
+  title       String
   // store the body as html string
-  body     String
-  tags     Tag[]
-}
-
-enum Tag {
-  FIRST
-  PROGRAMMING
-  TECH
-  TWITTER
-  TWITCH
+  body        String
+  description String
+  tags        String[]
+  createdAt   DateTime @map("createdAt")
 }
