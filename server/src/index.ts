@@ -15,7 +15,9 @@ const app = express();
 
 app.use(cors(), express.json());
 
-app.use("*", appRouter);
+app.use("/api", appRouter, (req, res) => {
+  res.send("hello from the server");
+});
 
 const port = env.PORT || 4040;
 
