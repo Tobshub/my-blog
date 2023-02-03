@@ -22,7 +22,8 @@ export default function CreatePost() {
     (JSON.parse(localStorage.getItem("saved-post") as string) as {
       title: string;
       body: string;
-    }) ?? { title: "", body: "" }
+      tags: string[];
+    }) ?? { title: "", body: "", tags: [] }
   );
 
   const handleEditorChange = (value: string) => {
@@ -34,19 +35,23 @@ export default function CreatePost() {
     );
   };
 
-  const handleTitleChange = (value: string) => {
-    setContent((state) => ({ ...state, title: value }));
+  const handleTitleChange = (title: string) => {
+    setContent((state) => ({ ...state, title }));
     // save change in localstorage
-    localStorage.setItem(
-      "saved-post",
-      JSON.stringify({ ...content, title: value })
-    );
+    localStorage.setItem("saved-post", JSON.stringify({ ...content, title }));
+  };
+
+  const handleTagsChange = (value: string) => {
+    const tags = value.split(", ").map((tag) => tag.trim());
+    setContent((state) => ({ ...state, tags }));
+    // save change in localstorage
+    localStorage.setItem("saved-post", JSON.stringify({ ...content, tags }));
   };
 
   const navigate = useNavigate();
   const createMut = trpc.posts.newPost.useMutation({
     onSuccess(data) {
-      console.log(data);
+      localStorage.removeItem("saved-post");
       const { slug } = data;
       return navigate(`/blog/${slug}`);
     },
@@ -62,11 +67,12 @@ export default function CreatePost() {
     if (!sure) return;
     const body = MDToHTML(content.body);
     if (body && content.title) {
+      const description = body.slice(0, 250).concat("...");
       createMut.mutate({
         body,
         title: content.title,
-        description: "A test post",
-        tags: ["test", "delete"],
+        description,
+        tags: content.tags,
       });
     }
   };
@@ -76,6 +82,7 @@ export default function CreatePost() {
       <PageNavBar />
       <main>
         <TitleWithState title={content.title} setTitle={handleTitleChange} />
+        <TagsWithState tags={content.tags} setTags={handleTagsChange} />
         <div
           style={{ backgroundColor: "var(--palette-white)" }}
           className="mb-4"
@@ -142,5 +149,23 @@ function TitleWithState(props: {
         Edit
       </button>
     </div>
+  );
+}
+
+function TagsWithState(props: {
+  tags: string[];
+  setTags(value: string): void;
+}) {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    props.setTags(e.target.value);
+  };
+
+  return (
+    <input
+      value={props.tags.join(", ")}
+      onChange={handleChange}
+      className="px-2 py-1 mb-2"
+      style={{ fontSize: ".8rem", width: 200, borderRadius: 5 }}
+    />
   );
 }
