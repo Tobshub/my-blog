@@ -17,11 +17,11 @@ export default function PageNavBar() {
     if (windowWidth === window.innerWidth) {
       return;
     }
-    if (!isOpen && window.innerWidth > 800) {
+    if (window.innerWidth > 800) {
       setIsOpen(true);
     }
     setWindowWidth(window.innerWidth);
-  }, 20);
+  }, 10);
 
   useEffect(() => {
     window.addEventListener("resize", openOnResize);
