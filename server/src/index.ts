@@ -22,6 +22,10 @@ app.use("/api", appRouter, (req, res) => {
   res.send("hello from the server");
 });
 
+app.use("/", (req, res) => {
+  res.send("what are you looking for here?");
+});
+
 const port = env.PORT || 4040;
 
 app.listen(port, () => {
