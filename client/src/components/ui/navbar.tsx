@@ -21,7 +21,7 @@ export default function PageNavBar() {
       setIsOpen(true);
     }
     setWindowWidth(window.innerWidth);
-  }, 50);
+  }, 20);
 
   useEffect(() => {
     window.addEventListener("resize", openOnResize);
