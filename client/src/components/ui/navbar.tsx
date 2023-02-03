@@ -1,65 +1,71 @@
 import { PropsWithChildren, useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { NavHashLink } from "react-router-hash-link";
+import "../../assets/styles/navbar.scss";
+import { IconContext } from "react-icons";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { MdOutlineClose } from "react-icons/md";
+import debounce from "../../utils/debounce";
 
 export default function PageNavBar() {
-  // grab the root div
-  const root = document.getElementById("root");
-  const [darken, setDarken] = useState(false);
-  // if the navbar isnt at the initial position, darken the background-slightly
-  const darkenOnScroll = (e: Event) => {
-    if (root) {
-      const y = root.scrollTop;
-      if (y > 100) {
-        setDarken(true);
-      } else {
-        setDarken(false);
-      }
-    }
-  };
+  const [isOpen, setIsOpen] = useState(true);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-  useEffect(() => {
-    if (root) {
-      root.onscroll = darkenOnScroll;
-    }
-
-    return () => {
-      if (root) {
-        root.onscroll = null;
+  // if the window is resized reopen the nav-bar
+  window.addEventListener(
+    "resize",
+    // use debounce function to reduce the number of re-renders
+    debounce(() => {
+      if (windowWidth === window.innerWidth) {
+        return;
       }
-    };
-  }, []);
+      if (!isOpen) {
+        setIsOpen(true);
+      }
+      setWindowWidth(window.innerWidth);
+    }, 200)
+  );
 
   return (
-    <header
-      className={`d-flex w-100 align-items-center justify-content-around`}
-      style={{
-        position: "sticky",
-        top: 0,
-        left: 0,
-        width: "100dvw",
-        backgroundColor: darken ? "var(--palette-background)" : "transparent",
-        transition: "background-color 350ms",
-        marginBottom: "5rem",
-      }}
-    >
-      <style>{`
-        strong {color: var(--palette-cyan)}
+    <>
+      <IconContext.Provider
+        value={{
+          className: "react-icons",
+          style: { color: "var(--palette-text)" },
+          size: "2rem",
+        }}
+      >
+        <div className="open-nav">
+          <GiHamburgerMenu onClick={() => setIsOpen(true)} />
+        </div>
+        <header
+          style={{
+            transition: "background-color 350ms",
+            width: isOpen ? "" : "0",
+          }}
+        >
+          <div className="close-nav">
+            <MdOutlineClose onClick={() => setIsOpen(false)} />
+          </div>
+          <style>{`
+        header strong {color: var(--palette-cyan)}
       `}</style>
-      <h1 className="display-5">
-        <strong>{"<"}</strong>
-        <em> tobs_** </em>
-        <strong>{"/>"}</strong>
-      </h1>
-      <nav className="nav navbar navbar-expand-lg">
-        <ul className="navbar-nav flex-row  gap-4 fs-4 font-weight-bold">
-          <NavItem to="/#top">Home</NavItem>
-          <NavItem to="/#about">About</NavItem>
-          <NavItem to="/blog">Blog</NavItem>
-          <NavItem to="/#contact-me">Contact Me</NavItem>
-        </ul>
-      </nav>
-    </header>
+          <h1 className="display-5">
+            <strong>{"<"}</strong>
+            <em> tobs_** </em>
+            <strong>{"/>"}</strong>
+          </h1>
+          <nav className="nav navbar navbar-expand-lg">
+            <ul className="navbar-nav gap-4 fs-4 font-weight-bold">
+              <NavItem to="/#top">Home</NavItem>
+              <NavItem to="/#about">About</NavItem>
+              <NavItem to="/blog">Blog</NavItem>
+              <NavItem to="/#contact-me">Contact Me</NavItem>
+            </ul>
+          </nav>
+        </header>
+      </IconContext.Provider>
+    </>
   );
 }
 

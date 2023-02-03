@@ -14,19 +14,16 @@ export default function HomePage() {
           width: 50%;
         }
         @media (max-width: 750px) {
-          * {
-            flex-direction: column;
-            text-align: center
-          }
+
           img.large-image {
-            width: 100%;
+            max-width: 100%;
           }
         }
         
       `}</style>
       <PageNavBar />
       <main
-        className={`d-flex flex-column align-items-center`}
+        className={`d-flex flex-column align-items-center `}
         style={{ gap: "4rem" }}
       >
         <div className="w-100 d-flex justify-content-around align-items-center">
