@@ -11,7 +11,7 @@ export default function RenderBlog() {
   const slug = useLoaderData() as string;
   // get blog from the server
 
-  const { data: blog } = trpc.posts.getPost.useQuery(
+  const { data: blog, isLoading } = trpc.posts.getPost.useQuery(
     { slug },
     {
       onSuccess(data) {
@@ -20,12 +20,30 @@ export default function RenderBlog() {
     }
   );
 
+  if (isLoading) {
+    return <>Loading...</>;
+  } else if (!blog) {
+    throw new Error("this blog post does not exist... yet");
+  }
+
   return (
     <div className="page">
       <PageNavBar />
-      <main style={{ display: "block", textAlign: "left" }}>
-        <h1>{blog?.title}</h1>
-        <p>{blog?.body}</p>
+      <main
+        style={{
+          display: "block",
+          textAlign: "left",
+          maxWidth: "750px",
+          margin: "0 auto",
+        }}
+      >
+        <style>{`
+          p {
+            display: block
+          }
+        `}</style>
+        <h1>{blog.title}</h1>
+        <div dangerouslySetInnerHTML={{ __html: blog.body }} />
       </main>
     </div>
   );
