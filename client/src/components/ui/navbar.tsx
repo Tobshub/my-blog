@@ -12,19 +12,21 @@ export default function PageNavBar() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   // if the window is resized reopen the nav-bar
-  window.addEventListener(
-    "resize",
-    // use debounce function to reduce the number of re-renders
-    debounce(() => {
-      if (windowWidth === window.innerWidth) {
-        return;
-      }
-      if (!isOpen) {
-        setIsOpen(true);
-      }
-      setWindowWidth(window.innerWidth);
-    }, 200)
-  );
+  // use debounce function to reduce the number of re-renders
+  const openOnResize = debounce(() => {
+    if (windowWidth === window.innerWidth) {
+      return;
+    }
+    if (!isOpen && window.innerWidth > 800) {
+      setIsOpen(true);
+    }
+    setWindowWidth(window.innerWidth);
+  }, 50);
+
+  useEffect(() => {
+    window.addEventListener("resize", openOnResize);
+    return () => window.removeEventListener("resize", openOnResize);
+  }, []);
 
   return (
     <>
