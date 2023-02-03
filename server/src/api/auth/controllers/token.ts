@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { env } from "../../../..";
+import { env } from "../../../index";
 
 // generate token
 export async function genToken(salt: string) {
