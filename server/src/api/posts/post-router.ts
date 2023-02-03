@@ -43,7 +43,6 @@ const postRouter = tRouter({
   getRecentPosts: tProcedure
     .input(z.object({ max: z.number().default(20) }))
     .query(async ({ input, ctx }) => {
-      console.log(ctx.auth);
       const recenentPosts = await getRecent(input.max);
       if (recenentPosts === "internal server error") {
         throw new tError({

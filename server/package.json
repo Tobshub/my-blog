@@ -17,6 +17,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
+    "slugify": "^1.6.5",
     "zod": "^3.20.2"
   },
   "devDependencies": {
@@ -31,4 +32,3 @@
     "typescript": "^4.9.5"
   }
 }
-

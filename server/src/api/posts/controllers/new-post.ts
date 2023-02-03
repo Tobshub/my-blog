@@ -1,4 +1,5 @@
 import { usePrisma } from "../../../config/prisma";
+import slugify from "slugify";
 
 // create a new post
 export default async function (post: {
@@ -8,7 +9,7 @@ export default async function (post: {
   body: string;
 }) {
   try {
-    const slug = genSlug(post.title);
+    const slug = slugify(post.title, { lower: true });
     await usePrisma.post.create({
       data: { ...post, slug, createdAt: new Date(Date.now()) },
     });
@@ -17,9 +18,4 @@ export default async function (post: {
     console.error(error);
     return "internal server error";
   }
-}
-
-function genSlug(str: string) {
-  const slug = Math.random().toString(36).substring(2);
-  return slug;
 }
