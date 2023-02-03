@@ -63,6 +63,7 @@ body,
 .page {
   padding: 0 4rem;
   background-color: var(--palette-background);
+  background-image: url("./assets/images/background.svg");
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: center;
@@ -73,5 +74,14 @@ body,
   height: fit-content;
   position: relative;
   scroll-behavior: smooth;
+
+  input {
+    outline: none;
+    border: 0;
+  }
+
+  button {
+    font-weight: 500;
+  }
 }
 
