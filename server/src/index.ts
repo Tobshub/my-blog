@@ -9,6 +9,9 @@ PrismaConnect() /** connect to mongodb with prisma */;
 
 export const env = {
   PORT: process.env.PORT,
+  JwtSecret: process.env.JWT_SECRET,
+  password: process.env.USER_PASSWORD,
+  email: process.env.USER_EMAIL,
 };
 
 const app = express();
