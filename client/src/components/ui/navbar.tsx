@@ -73,7 +73,7 @@ export default function PageNavBar() {
 
 function NavItem(props: PropsWithChildren & { to: string }) {
   return (
-    <li className="nav-item text-reset px-4 header__nav-item">
+    <li className="nav-item text-reset header__nav-item">
       <style>{`
         li.nav-item {
           border-radius: 5px;
@@ -88,7 +88,7 @@ function NavItem(props: PropsWithChildren & { to: string }) {
           smooth={true}
           to={props.to}
           activeClassName={"active"}
-          className={`nav-link text-reset`}
+          className={`nav-link text-reset px-3`}
         >
           {props.children}
         </NavHashLink>
@@ -96,7 +96,7 @@ function NavItem(props: PropsWithChildren & { to: string }) {
         <NavLink
           to={props.to}
           className={({ isActive }) =>
-            `nav-link text-reset ${isActive ? "active" : ""}`
+            `nav-link text-reset px-3 ${isActive ? "active" : ""}`
           }
         >
           {props.children}

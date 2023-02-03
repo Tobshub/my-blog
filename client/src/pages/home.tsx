@@ -30,7 +30,7 @@ export default function HomePage() {
       `}</style>
       <PageNavBar />
       <main className="d-flex" style={{ gap: "4rem" }}>
-        <div className="w-100 d-flex">
+        <div className="d-flex invert-on-break">
           <div id="top" style={{ scrollMarginTop: "4rem" }}>
             <h1 className="display-2" style={{ fontWeight: 600 }}>
               Hey!
@@ -49,21 +49,20 @@ export default function HomePage() {
             }}
           />
         </div>
-        <div className="w-100 d-flex" style={{ textAlign: "right" }}>
+        <div className="d-flex" style={{ textAlign: "right" }}>
           <img
             src={CodingPersonWLaptopSVG}
             className="large-image"
             style={{
-              width: "fit-content",
-              objectFit: "contain",
+              objectFit: "cover",
               objectPosition: "center",
             }}
           />
-          <div className="d-flex flex-column align-items-end">
+          <div className="d-flex w-100 px-5 flex-column align-items-end">
             <h1 id="about" style={{ scrollMarginTop: "5rem" }}>
               About
             </h1>
-            <p style={{ fontWeight: 500, maxWidth: 525, float: "right" }}>
+            <p style={{ fontWeight: 500 }}>
               My name is Tobani Esan-George (AKA Tobs). I love{" "}
               <a
                 href="https://lichess.org/@/Tobani"
@@ -79,7 +78,7 @@ export default function HomePage() {
               in June 2022. And almost everyday I've been in love with it.
             </p>
             <div
-              style={{ textAlign: "center" }}
+              style={{ textAlign: "center", maxWidth: "100%" }}
               className="d-flex flex-column gap-2 align-items-center"
             >
               <span className="d-block">My Tech Stack:</span>
@@ -129,7 +128,7 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-        <div className="w-100 d-flex">
+        <div className="d-flex">
           <div>
             <h1 id="contact-me" style={{ scrollMarginTop: "5rem" }}>
               Contact Me
