@@ -1,6 +1,6 @@
 import PageNavBar from "../../components/ui/navbar";
-import BackgroundSVG from "../../assets/images/background.svg";
 import trpc from "../../utils/trpc";
+import "../../assets/styles/blog.scss";
 import { Link } from "react-router-dom";
 
 export default function BlogIndex() {
@@ -15,10 +15,7 @@ export default function BlogIndex() {
   return (
     <div className="page">
       <PageNavBar />
-      <main
-        className={`d-flex flex-column`}
-        style={{ gap: "4rem", padding: "0 4rem" }}
-      >
+      <main className={`d-flex flex-column`} style={{ gap: "4rem" }}>
         {blogs.data && blogs.data.length ? (
           blogs.data.map((post) => (
             <div
