@@ -111,7 +111,10 @@ export default function HomePage() {
               </a>
               <br />
               LinkedIn:{" "}
-              <a href="https://linkedin.com/tobani-esan-george" target="_blank">
+              <a
+                href="https://www.linkedin.com/in/tobani-esan-george/"
+                target="_blank"
+              >
                 Tobani Esan-George
               </a>
             </p>
