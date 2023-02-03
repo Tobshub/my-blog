@@ -20,15 +20,22 @@ export default function BlogIndex() {
         style={{ gap: "4rem", padding: "0 4rem" }}
       >
         {blogs.isLoading ? <>Loading...</> : null}
-        {blogs.data?.map((post) => (
-          <div key={post.slug} style={{ textAlign: "left", display: "block" }}>
-            <h2>
-              <Link to={`./${post.slug}`}>{post.title}</Link>
-            </h2>
-            <p>{post.description}</p>
-            <p>{post.tags.join(" | ")}</p>
-          </div>
-        ))}
+        {blogs.data && blogs.data.length ? (
+          blogs.data.map((post) => (
+            <div
+              key={post.slug}
+              style={{ textAlign: "left", display: "block" }}
+            >
+              <h2>
+                <Link to={`./${post.slug}`}>{post.title}</Link>
+              </h2>
+              <p dangerouslySetInnerHTML={{ __html: post.description }} />
+              <p>{post.tags.join(" | ")}</p>
+            </div>
+          ))
+        ) : (
+          <p className="display-1">Nothing to see here</p>
+        )}
       </main>
     </div>
   );
