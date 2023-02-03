@@ -33,7 +33,7 @@ body,
 #root {
   width: 100vw;
   width: 100dvw;
-  height: 100vh;
+  min-height: 100vh;
   overflow-x: hidden;
 }
 
@@ -55,15 +55,16 @@ body,
     --palette-cyan: hsl(194, 85%, 30%);
 
     p {
-      text-shadow: 0 0.4rem 0.1rem var(--palette-text);
+      text-shadow: 0 0 0.1rem var(--palette-text);
     }
   }
 }
 
 .page {
-  padding: 0 4rem;
+  padding: 0 4rem 4rem;
   background-color: var(--palette-background);
   background-image: url("./assets/images/background.svg");
+  background-blend-mode: color-dodge;
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-position: center;
@@ -71,7 +72,7 @@ body,
   width: 100vw;
   width: 100dvw;
   min-height: 100vh;
-  height: fit-content;
+  height: 100%;
   position: relative;
   scroll-behavior: smooth;
 
