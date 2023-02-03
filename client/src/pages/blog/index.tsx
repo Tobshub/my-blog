@@ -19,7 +19,6 @@ export default function BlogIndex() {
         className={`d-flex flex-column`}
         style={{ gap: "4rem", padding: "0 4rem" }}
       >
-        {blogs.isLoading ? <>Loading...</> : null}
         {blogs.data && blogs.data.length ? (
           blogs.data.map((post) => (
             <div
@@ -34,7 +33,9 @@ export default function BlogIndex() {
             </div>
           ))
         ) : (
-          <p className="display-1">Nothing to see here</p>
+          <p className="display-1">
+            {blogs.isLoading ? "Loading..." : "Nothing to see here"}
+          </p>
         )}
       </main>
     </div>
