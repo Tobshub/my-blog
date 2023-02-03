@@ -1,0 +1,35 @@
+main {
+  flex-direction: column;
+  > div {
+    justify-content: space-around;
+    align-items: center;
+  }
+  img.large-image {
+    width: 50%;
+  }
+}
+
+@media (max-width: 800px) {
+  main {
+    > div {
+      flex-direction: column;
+    }
+    img.large-image {
+      width: 100%;
+    }
+  }
+}
+
+.h-scrollable-container {
+  display: flex;
+  gap: 0.5rem;
+  width: min(100%, 400px);
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding: 0.4rem 0;
+  // height: 50px;
+
+  > * {
+    display: block;
+  }
+}

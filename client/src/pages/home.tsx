@@ -2,31 +2,35 @@ import PageNavBar from "../components/ui/navbar";
 import CodingPersonSVG from "../assets/images/coding-person.webp";
 import CodingPersonWLaptopSVG from "../assets/images/man&laptop.webp";
 import ContactMan from "../assets/images/contact-man.png";
+import "../assets/styles/home.scss";
+import HScrollableContainer from "../components/ui/scrollable-container";
+import {
+  SiTypescript,
+  SiJavascript,
+  SiReact,
+  SiExpress,
+  SiMongodb,
+  SiPrisma,
+  SiGithub,
+  SiTwitter,
+  SiLinkedin,
+} from "react-icons/si";
+import { FaCss3, FaHtml5, FaNodeJs } from "react-icons/fa";
+import { DiGit, DiSass } from "react-icons/di";
+import { MdAlternateEmail } from "react-icons/md";
+import { IconContext } from "react-icons";
 
 export default function HomePage() {
   return (
-    <div className={`page `}>
+    <div className="page">
       <style>{`
         a {
           color: inherit;
         }
-        img.large-image {
-          width: 50%;
-        }
-        @media (max-width: 750px) {
-
-          img.large-image {
-            max-width: 100%;
-          }
-        }
-        
       `}</style>
       <PageNavBar />
-      <main
-        className={`d-flex flex-column align-items-center `}
-        style={{ gap: "4rem" }}
-      >
-        <div className="w-100 d-flex justify-content-around align-items-center">
+      <main className="d-flex" style={{ gap: "4rem" }}>
+        <div className="w-100 d-flex">
           <div id="top" style={{ scrollMarginTop: "4rem" }}>
             <h1 className="display-2" style={{ fontWeight: 600 }}>
               Hey!
@@ -45,10 +49,7 @@ export default function HomePage() {
             }}
           />
         </div>
-        <div
-          className="w-100 d-flex justify-content-between align-items-center"
-          style={{ textAlign: "right" }}
-        >
+        <div className="w-100 d-flex" style={{ textAlign: "right" }}>
           <img
             src={CodingPersonWLaptopSVG}
             className="large-image"
@@ -58,7 +59,7 @@ export default function HomePage() {
               objectPosition: "center",
             }}
           />
-          <div>
+          <div className="d-flex flex-column align-items-end">
             <h1 id="about" style={{ scrollMarginTop: "5rem" }}>
               About
             </h1>
@@ -77,44 +78,112 @@ export default function HomePage() {
               I've been programming almost everyday since I officially started
               in June 2022. And almost everyday I've been in love with it.
             </p>
-            <ul style={{ textAlign: "left" }}>
-              My Tech Stack:
-              <li>HTML/CSS</li>
-              <li>JavaScript</li>
-              <li>TypeScript</li>
-              <li>React</li>
-              <li>NodeJS</li>
-              <li>ExpressJS</li>
-            </ul>
+            <div
+              style={{ textAlign: "center" }}
+              className="d-flex flex-column gap-2 align-items-center"
+            >
+              <span className="d-block">My Tech Stack:</span>
+              <HScrollableContainer>
+                <IconContext.Provider
+                  value={{
+                    size: "2.75rem",
+                    className: "react-icons",
+                    style: { color: "var(--palette-text)" },
+                  }}
+                >
+                  <li title="html">
+                    <FaHtml5 />
+                  </li>
+                  <li title="css">
+                    <FaCss3 />
+                  </li>
+                  <li title="sass">
+                    <DiSass />
+                  </li>
+                  <li title="javascript">
+                    <SiJavascript />
+                  </li>
+                  <li title="typescript">
+                    <SiTypescript />
+                  </li>
+                  <li title="reactjs">
+                    <SiReact />
+                  </li>
+                  <li title="nodejs">
+                    <FaNodeJs />
+                  </li>
+                  <li title="expressjs">
+                    <SiExpress />
+                  </li>
+                  <li title="git">
+                    <DiGit />
+                  </li>
+                  <li title="mongodb">
+                    <SiMongodb />
+                  </li>
+                  <li title="prisma">
+                    <SiPrisma />
+                  </li>
+                </IconContext.Provider>
+              </HScrollableContainer>
+            </div>
           </div>
         </div>
-        <div className="w-100 d-flex align-items-center justify-content-between">
+        <div className="w-100 d-flex">
           <div>
             <h1 id="contact-me" style={{ scrollMarginTop: "5rem" }}>
               Contact Me
             </h1>
-            <p style={{ fontWeight: 500, maxWidth: 525 }}>
-              Email:{" "}
-              <a href="mailto:tobanigeorge@gmail.com">tobanigeorge@gmail.com</a>
-              <br />
-              Github:{" "}
-              <a href="https://github.com/Tobshub" target="_blank">
-                Tobshub
-              </a>
-              <br />
-              Twitter:{" "}
-              <a href="https://twitter.com/tobani_io" target="_blank">
-                tobani_io
-              </a>
-              <br />
-              LinkedIn:{" "}
-              <a
-                href="https://www.linkedin.com/in/tobani-esan-george/"
-                target="_blank"
+            <div
+              style={{ fontWeight: 500, maxWidth: 525, fontSize: "1.25rem" }}
+            >
+              <IconContext.Provider
+                value={{
+                  className: "react-icons",
+                  size: "3rem",
+                  style: {
+                    color: "var(--palette-text)",
+                    marginRight: "1.5rem",
+                  },
+                }}
               >
-                Tobani Esan-George
-              </a>
-            </p>
+                <p>
+                  <span title="email">
+                    <MdAlternateEmail />
+                  </span>
+                  <a href="mailto:tobanigeorge@gmail.com">
+                    tobanigeorge@gmail.com
+                  </a>
+                </p>
+                <p>
+                  <span>
+                    <SiGithub />
+                  </span>
+                  <a href="https://github.com/Tobshub" target="_blank">
+                    Tobshub
+                  </a>
+                </p>
+                <p>
+                  <span>
+                    <SiTwitter />
+                  </span>
+                  <a href="https://twitter.com/tobani_io" target="_blank">
+                    tobani_io
+                  </a>
+                </p>
+                <p>
+                  <span>
+                    <SiLinkedin />
+                  </span>
+                  <a
+                    href="https://www.linkedin.com/in/tobani-esan-george/"
+                    target="_blank"
+                  >
+                    Tobani Esan-George
+                  </a>
+                </p>
+              </IconContext.Provider>
+            </div>
           </div>
           <img src={ContactMan} className="large-image" />
         </div>
