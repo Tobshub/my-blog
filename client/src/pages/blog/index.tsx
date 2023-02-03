@@ -7,18 +7,19 @@ export default function BlogIndex() {
   const blogs = trpc.posts.getRecentPosts.useQuery(
     { max: 20 },
     {
-      onSuccess(data) {
-        console.log(data);
-      },
+      // onSuccess(data) {
+      //   console.log(data);
+      // },
     }
   );
   return (
-    <div className="page" style={{ backgroundImage: `url(${BackgroundSVG})` }}>
+    <div className="page">
       <PageNavBar />
       <main
         className={`d-flex flex-column`}
         style={{ gap: "4rem", padding: "0 4rem" }}
       >
+        {blogs.isLoading ? <>Loading...</> : null}
         {blogs.data?.map((post) => (
           <div key={post.slug} style={{ textAlign: "left", display: "block" }}>
             <h2>

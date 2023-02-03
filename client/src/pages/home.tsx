@@ -1,15 +1,11 @@
 import PageNavBar from "../components/ui/navbar";
 import CodingPersonSVG from "../assets/images/coding-person.webp";
 import CodingPersonWLaptopSVG from "../assets/images/man&laptop.webp";
-import BackgroundSVG from "../assets/images/background.svg";
 import ContactMan from "../assets/images/contact-man.png";
 
 export default function HomePage() {
   return (
-    <div
-      className={`page `}
-      style={{ backgroundImage: `url(${BackgroundSVG})` }}
-    >
+    <div className={`page `}>
       <style>{`
         a {
           color: inherit;
