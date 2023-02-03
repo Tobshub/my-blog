@@ -14,9 +14,9 @@ export default function RenderBlog() {
   const { data: blog, isLoading } = trpc.posts.getPost.useQuery(
     { slug },
     {
-      onSuccess(data) {
-        console.log(data);
-      },
+      // onSuccess(data) {
+      //   console.log(data);
+      // },
     }
   );
 
