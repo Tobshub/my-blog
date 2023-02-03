@@ -3,6 +3,7 @@ import z from "zod";
 import getRecent from "./controllers/get-recent";
 import newPost from "./controllers/new-post";
 import getPost from "./controllers/get-post";
+import { validateToken } from "../auth/controllers/token";
 
 const postRouter = tRouter({
   // get Routes
@@ -41,7 +42,8 @@ const postRouter = tRouter({
     }),
   getRecentPosts: tProcedure
     .input(z.object({ max: z.number().default(20) }))
-    .query(async ({ input }) => {
+    .query(async ({ input, ctx }) => {
+      console.log(ctx.auth);
       const recenentPosts = await getRecent(input.max);
       if (recenentPosts === "internal server error") {
         throw new tError({
@@ -61,15 +63,33 @@ const postRouter = tRouter({
         tags: z.string().array(),
       })
     )
-    .mutation(async ({ input }) => {
-      const slug = await newPost(input);
-      if (slug === "internal server error") {
-        throw new tError({
-          message: "An error occured",
-          code: "INTERNAL_SERVER_ERROR",
-        });
+    .mutation(async ({ input, ctx }) => {
+      if (!ctx.auth.token) {
+        throw new tError({ message: "token is missing", code: "UNAUTHORIZED" });
       }
-      return slug;
+      const validate = await validateToken(ctx.auth.token);
+
+      switch (validate) {
+        case "invalid token":
+        case "expired":
+        case "error validating token": {
+          throw new tError({
+            message: "you aren't Tobs",
+            code: "UNAUTHORIZED",
+          });
+        }
+        default: {
+          // when the token is validated
+          const slug = await newPost(input);
+          if (slug === "internal server error") {
+            throw new tError({
+              message: "An error occured",
+              code: "INTERNAL_SERVER_ERROR",
+            });
+          }
+          return slug;
+        }
+      }
     }),
 });
 
