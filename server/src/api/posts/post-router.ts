@@ -1,19 +1,43 @@
 import { tRouter, tProcedure, tError } from "../../config/trpc";
 import z from "zod";
 import { validateToken } from "../auth/controllers/token";
-import { getPost, getRecent, newPost } from "./controllers";
+import {
+  getPost,
+  getRecent,
+  newPost,
+  searchTags,
+  searchTitle,
+} from "./controllers";
 
 const postRouter = tRouter({
   // get Routes
   searchByTitle: tProcedure
     .input(z.object({ title: z.string() }))
-    .query(({ input }) => {
-      return `post: ${input.title}`;
+    .query(async ({ input }) => {
+      const posts = await searchTitle(input.title);
+      switch (typeof posts) {
+        case "string": {
+          throw new tError({
+            message: "An error occured",
+            code: "INTERNAL_SERVER_ERROR",
+          });
+        }
+        case "object": {
+          return posts;
+        }
+      }
     }),
   searchByTags: tProcedure
     .input(z.object({ tags: z.string().array() }))
-    .query(({ input }) => {
-      return `post tags: ${input.tags.toString()}`;
+    .query(async ({ input }) => {
+      const posts = await searchTags(input.tags);
+      if (posts === "internal server error") {
+        throw new tError({
+          message: "An error occured",
+          code: "INTERNAL_SERVER_ERROR",
+        });
+      }
+      return posts;
     }),
   getPost: tProcedure
     .input(z.object({ slug: z.string() }))
