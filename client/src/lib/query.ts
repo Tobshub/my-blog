@@ -1,7 +1,7 @@
 import { QueryClient } from "@tanstack/react-query";
 import { httpBatchLink } from "@trpc/react-query";
 import trpc from "../utils/trpc";
-import env from "../data/env.json";
+import env from "../data/env";
 import { getToken } from "./store";
 
 export const queryClient = new QueryClient({
