@@ -1,9 +1,7 @@
 import { tRouter, tProcedure, tError } from "../../config/trpc";
 import z from "zod";
-import getRecent from "./controllers/get-recent";
-import newPost from "./controllers/new-post";
-import getPost from "./controllers/get-post";
 import { validateToken } from "../auth/controllers/token";
+import { getPost, getRecent, newPost } from "./controllers";
 
 const postRouter = tRouter({
   // get Routes
@@ -42,7 +40,7 @@ const postRouter = tRouter({
     }),
   getRecentPosts: tProcedure
     .input(z.object({ max: z.number().default(20) }))
-    .query(async ({ input, ctx }) => {
+    .query(async ({ input }) => {
       const recenentPosts = await getRecent(input.max);
       if (recenentPosts === "internal server error") {
         throw new tError({

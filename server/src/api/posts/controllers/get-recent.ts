@@ -1,7 +1,7 @@
 import { usePrisma } from "../../../config/prisma";
 
 // get recent posts
-export default async function (limit: number) {
+export async function getRecent(limit: number) {
   try {
     const recentPosts = await usePrisma.post.findMany({
       take: limit,

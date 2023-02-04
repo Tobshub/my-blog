@@ -2,7 +2,7 @@ import { usePrisma } from "../../../config/prisma";
 import slugify from "slugify";
 
 // create a new post
-export default async function (post: {
+export async function newPost(post: {
   title: string;
   description: string;
   tags: string[];
