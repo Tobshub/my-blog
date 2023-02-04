@@ -12,6 +12,8 @@ dist
 dist-ssr
 *.local
 .env
+*.lock
+*-lock.json
 *-lock.yaml
 *.tsbuildinfo
 
