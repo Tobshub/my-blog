@@ -87,8 +87,9 @@ function NavItem(props: PropsWithChildren & { to: string }) {
         <NavHashLink
           smooth={true}
           to={props.to}
-          activeClassName={"active"}
-          className={`nav-link text-reset px-3`}
+          className={({ isActive }) =>
+            `nav-link text-reset px-3 ${isActive ? "active" : ""}`
+          }
         >
           {props.children}
         </NavHashLink>
