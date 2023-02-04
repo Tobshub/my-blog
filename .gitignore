@@ -12,6 +12,8 @@ dist
 dist-ssr
 *.local
 .env
+*.lock
+*-lock.json
 *-lock.yaml
 *.tsbuildinfo
 
@@ -25,3 +27,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local Netlify folder
+.netlify

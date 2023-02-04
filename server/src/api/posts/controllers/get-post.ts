@@ -1,7 +1,7 @@
 import { usePrisma } from "../../../config/prisma";
 
 // get a post with the slug
-export default async function (slug: string) {
+export async function getPost(slug: string) {
   try {
     const post = await usePrisma.post.findUnique({
       where: { slug },

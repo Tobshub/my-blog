@@ -1,11 +1,14 @@
 import { usePrisma } from "../../../config/prisma";
 
-// get recent posts
-export async function getRecent(limit: number) {
+// filter posts by their title
+export async function searchTitle(title: string) {
   try {
-    const recentPosts = await usePrisma.post.findMany({
-      take: limit,
-      orderBy: { createdAt: "desc" },
+    const filteredPosts = await usePrisma.post.findMany({
+      where: {
+        title: {
+          contains: title,
+        },
+      },
       select: {
         createdAt: true,
         slug: true,
@@ -14,7 +17,8 @@ export async function getRecent(limit: number) {
         description: true,
       },
     });
-    return recentPosts;
+
+    return filteredPosts;
   } catch (error) {
     console.error(error);
     return "internal server error";
