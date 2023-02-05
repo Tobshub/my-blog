@@ -79,16 +79,18 @@ export default function PageNavBar() {
                   placeholder="search by title"
                   className="form-control px-3 py-0"
                 />
-                <button
-                  type="button"
-                  className="btn"
-                  onClick={() => setMode("normal")}
-                >
-                  <MdCancel />
-                </button>
-                <button type="submit" className="btn">
-                  Search
-                </button>
+                <div className="d-flex">
+                  <button
+                    type="button"
+                    className="btn"
+                    onClick={() => setMode("normal")}
+                  >
+                    <MdCancel />
+                  </button>
+                  <button type="submit" className="btn">
+                    Search
+                  </button>
+                </div>
               </form>
             )}
           </nav>

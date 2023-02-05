@@ -54,6 +54,11 @@ header {
       ul.navbar-nav {
         flex-direction: column;
       }
+
+      form {
+        flex-direction: column;
+        gap: 0.3rem;
+      }
     }
   }
 }
