@@ -36,7 +36,10 @@ export default function BlogIndex() {
               <p dangerouslySetInnerHTML={{ __html: post.description }} />
               <p>
                 {post.tags.map((tag, i) => (
-                  <Link to={{ pathname: "/blog", search: `?tag=${tag}` }}>
+                  <Link
+                    key={tag}
+                    to={{ pathname: "/blog", search: `?tag=${tag}` }}
+                  >
                     {tag}
                     {i < post.tags.length - 1 ? " | " : ""}
                   </Link>
