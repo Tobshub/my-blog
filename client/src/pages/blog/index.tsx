@@ -1,17 +1,20 @@
 import PageNavBar from "../../components/ui/navbar";
 import trpc from "../../utils/trpc";
 import "../../assets/styles/blog.scss";
-import { Link } from "react-router-dom";
+import { Link, LoaderFunctionArgs, useLoaderData } from "react-router-dom";
+
+export async function loader({ request }: LoaderFunctionArgs) {
+  const url = new URL(request.url);
+  const search = url.searchParams.get("title");
+  return search;
+}
 
 export default function BlogIndex() {
-  const blogs = trpc.posts.getRecentPosts.useQuery(
-    { max: 20 },
-    {
-      // onSuccess(data) {
-      //   console.log(data);
-      // },
-    }
-  );
+  const searchFilter = useLoaderData() as string | undefined;
+  // search with filter is it exists
+  const blogs = searchFilter
+    ? trpc.posts.searchByTitle.useQuery({ title: searchFilter })
+    : trpc.posts.getRecentPosts.useQuery({ max: 20 });
   return (
     <div className="page">
       <PageNavBar />

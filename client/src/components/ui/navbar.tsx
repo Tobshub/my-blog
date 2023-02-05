@@ -1,15 +1,18 @@
 import { PropsWithChildren, useEffect, useRef, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Form, NavLink, useNavigate } from "react-router-dom";
 import { NavHashLink } from "react-router-hash-link";
 import "../../assets/styles/navbar.scss";
 import { IconContext } from "react-icons";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { MdOutlineClose } from "react-icons/md";
+import { MdOutlineClose, MdOutlineSearch, MdCancel } from "react-icons/md";
 import debounce from "../../utils/debounce";
 
 export default function PageNavBar() {
   const [isOpen, setIsOpen] = useState(true);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [mode, setMode] = useState<"normal" | "search">("normal");
+  const searchInput = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
 
   // if the window is resized reopen the nav-bar
   // use debounce function to reduce the number of re-renders
@@ -57,16 +60,62 @@ export default function PageNavBar() {
             <em> tobs_** </em>
             <strong>{"/>"}</strong>
           </h1>
-          <nav className="nav navbar navbar-expand-lg">
-            <ul className="navbar-nav gap-4 fs-4 font-weight-bold">
-              <NavItem to="/#top">Home</NavItem>
-              <NavItem to="/#about">About</NavItem>
-              <NavItem to="/blog">Blog</NavItem>
-              <NavItem to="/#contact-me">Contact Me</NavItem>
-            </ul>
+          <nav className="nav navbar">
+            {mode === "normal" ? (
+              <NormalNavBar setMode={setMode} />
+            ) : (
+              <form
+                className="form-inline d-flex"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  if (searchInput.current) {
+                    navigate(`/blog?title=${searchInput.current?.value}`);
+                  }
+                }}
+              >
+                <input
+                  ref={searchInput}
+                  type="search"
+                  placeholder="search by title"
+                  className="form-control px-3 py-0"
+                />
+                <div className="d-flex">
+                  <button
+                    type="button"
+                    className="btn"
+                    onClick={() => setMode("normal")}
+                  >
+                    <MdCancel />
+                  </button>
+                  <button type="submit" className="btn">
+                    Search
+                  </button>
+                </div>
+              </form>
+            )}
           </nav>
         </header>
       </IconContext.Provider>
+    </>
+  );
+}
+
+function NormalNavBar({
+  setMode,
+}: {
+  setMode: React.Dispatch<React.SetStateAction<"normal" | "search">>;
+}) {
+  return (
+    <>
+      <ul className="navbar-nav gap-4 fs-4 font-weight-bold mx-2">
+        <NavItem to="/#top">Home</NavItem>
+        <NavItem to="/#about">About</NavItem>
+        <NavItem to="/blog">Blog</NavItem>
+        <NavItem to="/#contact-me">Contact Me</NavItem>
+      </ul>
+      <div className="mx-2">
+        <MdOutlineSearch onClick={() => setMode("search")} />
+      </div>
     </>
   );
 }

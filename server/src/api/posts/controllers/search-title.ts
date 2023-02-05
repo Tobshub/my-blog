@@ -7,6 +7,7 @@ export async function searchTitle(title: string) {
       where: {
         title: {
           contains: title,
+          mode: "insensitive",
         },
       },
       select: {

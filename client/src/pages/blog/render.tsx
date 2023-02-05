@@ -11,6 +11,10 @@ export default function RenderBlog() {
   const slug = useLoaderData() as string;
   // get blog from the server
 
+  /* TODO: error handling
+    if the server returns 504 show "something went wrong page"
+    if the server returns 404 show "not found page"
+  */
   const { data: blog, isLoading } = trpc.posts.getPost.useQuery(
     { slug },
     {
