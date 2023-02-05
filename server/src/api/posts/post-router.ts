@@ -9,6 +9,8 @@ import {
   searchTitle,
 } from "./controllers";
 
+// TODO: merge search by title and tags
+// so users can do both for better filtering
 const postRouter = tRouter({
   // get Routes
   searchByTitle: tProcedure
