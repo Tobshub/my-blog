@@ -11,8 +11,6 @@ export default function PageNavBar() {
   const [isOpen, setIsOpen] = useState(true);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [mode, setMode] = useState<"normal" | "search">("normal");
-  const searchInput = useRef<HTMLInputElement>(null);
-  const navigate = useNavigate();
 
   // if the window is resized reopen the nav-bar
   // use debounce function to reduce the number of re-renders
