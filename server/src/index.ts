@@ -16,7 +16,7 @@ export const env = {
 
 const app = express();
 
-app.use(cors(), express.json({ limit: 1_000_000 }) /** requests up to ~1gb */);
+app.use(cors(), express.json({ limit: 1_000_000 }) /** requests up to ~1mb */);
 
 app.use("/api", appRouter, (req, res) => {
   res.send("hello from the server");
