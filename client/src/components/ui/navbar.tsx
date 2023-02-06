@@ -1,5 +1,5 @@
 import { PropsWithChildren, useEffect, useRef, useState } from "react";
-import { Form, NavLink, useNavigate } from "react-router-dom";
+import { Form, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { NavHashLink } from "react-router-hash-link";
 import "../../assets/styles/navbar.scss";
 import { IconContext } from "react-icons";
@@ -11,8 +11,6 @@ export default function PageNavBar() {
   const [isOpen, setIsOpen] = useState(true);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [mode, setMode] = useState<"normal" | "search">("normal");
-  const searchInput = useRef<HTMLInputElement>(null);
-  const navigate = useNavigate();
 
   // if the window is resized reopen the nav-bar
   // use debounce function to reduce the number of re-renders
@@ -64,34 +62,7 @@ export default function PageNavBar() {
             {mode === "normal" ? (
               <NormalNavBar setMode={setMode} />
             ) : (
-              <form
-                className="form-inline d-flex"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  if (searchInput.current) {
-                    navigate(`/blog?title=${searchInput.current?.value}`);
-                  }
-                }}
-              >
-                <input
-                  ref={searchInput}
-                  type="search"
-                  placeholder="search by title"
-                  className="form-control px-3 py-0"
-                />
-                <div className="d-flex">
-                  <button
-                    type="button"
-                    className="btn"
-                    onClick={() => setMode("normal")}
-                  >
-                    <MdCancel />
-                  </button>
-                  <button type="submit" className="btn">
-                    Search
-                  </button>
-                </div>
-              </form>
+              <SearchNavBar setMode={setMode} />
             )}
           </nav>
         </header>
@@ -117,6 +88,54 @@ function NormalNavBar({
         <MdOutlineSearch onClick={() => setMode("search")} />
       </div>
     </>
+  );
+}
+
+function SearchNavBar({
+  setMode,
+}: {
+  setMode: React.Dispatch<React.SetStateAction<"normal" | "search">>;
+}) {
+  const navigate = useNavigate();
+  const searchInput = useRef<HTMLInputElement>(null);
+
+  // when the search bar is opened
+  // display the current title search query if any
+  const [lastQuery, setLastQuery] = useState("");
+  const location = useLocation();
+
+  useEffect(() => {
+    const search = new URLSearchParams(location.search);
+    const title = search.get("title");
+    setLastQuery(title ?? "");
+  }, []);
+
+  return (
+    <form
+      className="form-inline d-flex"
+      onSubmit={(e) => {
+        e.preventDefault();
+        if (searchInput.current) {
+          navigate(`/blog?title=${searchInput.current?.value}`);
+        }
+      }}
+    >
+      <input
+        ref={searchInput}
+        type="search"
+        placeholder="search by title"
+        defaultValue={lastQuery}
+        className="form-control px-3 py-0"
+      />
+      <div className="d-flex">
+        <button type="button" className="btn" onClick={() => setMode("normal")}>
+          <MdCancel />
+        </button>
+        <button type="submit" className="btn">
+          Search
+        </button>
+      </div>
+    </form>
   );
 }
 

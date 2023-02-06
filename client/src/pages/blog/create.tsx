@@ -1,11 +1,11 @@
-import SimpleMdeReact from "react-simplemde-editor";
-import "easymde/dist/easymde.min.css";
 import PageNavBar from "../../components/ui/navbar";
 import { LoaderFunctionArgs, redirect, useNavigate } from "react-router-dom";
 import { getToken } from "../../lib/store";
 import React, { useRef, useState } from "react";
 import trpc from "../../utils/trpc";
-import MDToHTML from "../../lib/md-html";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import Page from "../../layouts/Page";
 
 export async function loader({}: LoaderFunctionArgs) {
   const token = getToken();
@@ -25,6 +25,7 @@ export default function CreatePost() {
       tags: string[];
     }) ?? { title: "", body: "", tags: [] }
   );
+  const editorRef = useRef<ReactQuill>(null);
 
   const handleEditorChange = (value: string) => {
     setContent((state) => ({ ...state, body: value }));
@@ -65,40 +66,40 @@ export default function CreatePost() {
       `Are you sure you want to create new post: ${content.title}`
     );
     if (!sure) return;
-    const body = MDToHTML(content.body);
-    if (body && content.title) {
-      const description = body.slice(0, 250).concat("...");
+    if (content.title && content.body && editorRef.current) {
+      // use plain text as the description
+      const description = editorRef.current
+        .getEditor()
+        .getText()
+        .slice(0, 250)
+        .concat("...");
       createMut.mutate({
-        body,
-        title: content.title,
+        ...content,
         description,
-        tags: content.tags,
       });
     }
   };
 
   return (
-    <div className="page">
-      <PageNavBar />
-      <main>
-        <TitleWithState title={content.title} setTitle={handleTitleChange} />
-        <TagsWithState tags={content.tags} setTags={handleTagsChange} />
-        <div
-          style={{ backgroundColor: "var(--palette-white)" }}
-          className="mb-4"
-        >
-          <SimpleMdeReact value={content.body} onChange={handleEditorChange} />
-        </div>
-        <div className="d-flex gap-4 justify-content-end">
-          <button className="btn btn-outline-secondary px-4 py-2">
-            CANCEL
-          </button>
-          <button className="btn btn-success px-4 py-2" onClick={handleCreate}>
-            POST
-          </button>
-        </div>
-      </main>
-    </div>
+    <Page>
+      <TitleWithState title={content.title} setTitle={handleTitleChange} />
+      <TagsWithState tags={content.tags} setTags={handleTagsChange} />
+      <div className="mb-5" style={{ height: "fit-content" }}>
+        <ReactQuill
+          ref={editorRef}
+          value={content.body}
+          onChange={handleEditorChange}
+          placeholder="Post content..."
+          style={{ height: 400 }}
+        />
+      </div>
+      <div className="d-flex gap-4 justify-content-end">
+        <button className="btn btn-outline-secondary px-4 py-2">CANCEL</button>
+        <button className="btn btn-success px-4 py-2" onClick={handleCreate}>
+          POST
+        </button>
+      </div>
+    </Page>
   );
 }
 

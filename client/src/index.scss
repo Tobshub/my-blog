@@ -39,24 +39,16 @@ body,
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --palette-text: hsl(276, 91%, 96%);
+    --palette-text: hsl(276, 91%, 90%);
     --palette-background: hsl(258, 86%, 4%);
-
-    p {
-      text-shadow: 0 0 0.2rem var(--palette-text);
-    }
   }
 }
 
 @media (prefers-color-scheme: light) {
   :root {
     --palette-background: hsl(276, 91%, 96%);
-    --palette-text: hsl(276, 91%, 4%);
+    --palette-text: hsl(276, 91%, 10%);
     --palette-cyan: hsl(194, 85%, 30%);
-
-    p {
-      text-shadow: 0 0 0.1rem var(--palette-text);
-    }
   }
 }
 
