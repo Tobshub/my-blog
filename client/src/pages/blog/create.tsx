@@ -5,6 +5,7 @@ import React, { useRef, useState } from "react";
 import trpc from "../../utils/trpc";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import Page from "../../layouts/Page";
 
 export async function loader({}: LoaderFunctionArgs) {
   const token = getToken();
@@ -80,30 +81,25 @@ export default function CreatePost() {
   };
 
   return (
-    <div className="page">
-      <PageNavBar />
-      <main>
-        <TitleWithState title={content.title} setTitle={handleTitleChange} />
-        <TagsWithState tags={content.tags} setTags={handleTagsChange} />
-        <div className="mb-5" style={{ height: "fit-content" }}>
-          <ReactQuill
-            ref={editorRef}
-            value={content.body}
-            onChange={handleEditorChange}
-            placeholder="Post content..."
-            style={{ height: 400 }}
-          />
-        </div>
-        <div className="d-flex gap-4 justify-content-end">
-          <button className="btn btn-outline-secondary px-4 py-2">
-            CANCEL
-          </button>
-          <button className="btn btn-success px-4 py-2" onClick={handleCreate}>
-            POST
-          </button>
-        </div>
-      </main>
-    </div>
+    <Page>
+      <TitleWithState title={content.title} setTitle={handleTitleChange} />
+      <TagsWithState tags={content.tags} setTags={handleTagsChange} />
+      <div className="mb-5" style={{ height: "fit-content" }}>
+        <ReactQuill
+          ref={editorRef}
+          value={content.body}
+          onChange={handleEditorChange}
+          placeholder="Post content..."
+          style={{ height: 400 }}
+        />
+      </div>
+      <div className="d-flex gap-4 justify-content-end">
+        <button className="btn btn-outline-secondary px-4 py-2">CANCEL</button>
+        <button className="btn btn-success px-4 py-2" onClick={handleCreate}>
+          POST
+        </button>
+      </div>
+    </Page>
   );
 }
 

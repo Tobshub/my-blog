@@ -1,5 +1,6 @@
 import { LoaderFunctionArgs, useLoaderData } from "react-router-dom";
 import PageNavBar from "../../components/ui/navbar";
+import Page from "../../layouts/Page";
 import trpc from "../../utils/trpc";
 
 export async function loader({ params }: LoaderFunctionArgs) {
@@ -31,24 +32,21 @@ export default function RenderBlog() {
   }
 
   return (
-    <div className="page">
-      <PageNavBar />
-      <main
-        style={{
-          display: "block",
-          textAlign: "left",
-          maxWidth: "750px",
-          margin: "0 auto",
-        }}
-      >
-        <style>{`
+    <Page
+      mainStyles={{
+        display: "block",
+        textAlign: "left",
+        maxWidth: "750px",
+        margin: "0 auto",
+      }}
+    >
+      <style>{`
           p {
             display: block
           }
         `}</style>
-        <h1>{blog.title}</h1>
-        <div dangerouslySetInnerHTML={{ __html: blog.body }} />
-      </main>
-    </div>
+      <h1>{blog.title}</h1>
+      <div dangerouslySetInnerHTML={{ __html: blog.body }} />
+    </Page>
   );
 }
