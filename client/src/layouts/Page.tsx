@@ -3,7 +3,7 @@ import PageNavBar from "../components/ui/navbar";
 type PageProps = React.PropsWithChildren & {
   pageStyles?: React.CSSProperties;
   mainStyles?: React.CSSProperties;
-  mainClassNames?: string[];
+  mainClassName?: string;
 };
 
 export default function Page(props: PageProps) {
@@ -15,7 +15,7 @@ export default function Page(props: PageProps) {
       <PageNavBar />
       <main
         style={props.mainStyles ? props.mainStyles : undefined}
-        className={props.mainClassNames?.join(" ")}
+        className={props.mainClassName ?? ""}
       >
         {props.children}
       </main>
