@@ -6,7 +6,7 @@ import { Link, LoaderFunctionArgs, useLoaderData } from "react-router-dom";
 export async function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url);
   const searchTitle = url.searchParams.get("title");
-  const searchTags = url.searchParams.getAll("tags");
+  const searchTags = url.searchParams.getAll("tag");
   return { searchTags, searchTitle };
 }
 
