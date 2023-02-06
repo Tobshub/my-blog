@@ -25,7 +25,10 @@ export default function BlogIndex() {
     <Page mainClassName={"d-flex flex-column"} mainStyles={{ gap: "4rem" }}>
       {blogs.data && blogs.data.length ? (
         blogs.data.map((post) => (
-          <div key={post.slug} style={{ textAlign: "left", display: "block" }}>
+          <div
+            key={post.slug}
+            style={{ textAlign: "left", display: "block", width: "100%" }}
+          >
             <h2>
               <Link to={`./${post.slug}`}>{post.title}</Link>
             </h2>
@@ -33,7 +36,7 @@ export default function BlogIndex() {
             <p>
               {post.tags.map((tag, i) => (
                 <Link
-                  key={tag}
+                  key={tag + i}
                   to={{ pathname: "/blog", search: `?tag=${tag}` }}
                 >
                   {tag}

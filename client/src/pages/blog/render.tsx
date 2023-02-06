@@ -1,5 +1,4 @@
 import { LoaderFunctionArgs, useLoaderData } from "react-router-dom";
-import PageNavBar from "../../components/ui/navbar";
 import Page from "../../layouts/Page";
 import trpc from "../../utils/trpc";
 
@@ -26,7 +25,7 @@ export default function RenderBlog() {
   if (isLoading && !isError) {
     return <>Loading...</>;
   } else if (!blog) {
-    throw new Error("this blog post does not exist... yet");
+    throw new Error("This blog post does not exist... yet");
   } else if (error) {
     throw new Error(error.message);
   }
@@ -42,7 +41,10 @@ export default function RenderBlog() {
     >
       <style>{`
           p {
-            display: block
+            display: block;
+          }
+          img {
+            width: 100%;
           }
         `}</style>
       <h1>{blog.title}</h1>
