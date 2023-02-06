@@ -4,6 +4,7 @@ import { queryClient, trpcClient } from "./lib/query";
 import LoginPage from "./pages/auth/login";
 import BlogIndex, { loader as blogIndexLoader } from "./pages/blog";
 import CreatePost, { loader as createPostLoader } from "./pages/blog/create";
+import RenderBlogErrorElement from "./pages/blog/errors/render-error";
 import RenderBlog, { loader as renderBlogLoader } from "./pages/blog/render";
 import HomePage from "./pages/home";
 import trpc from "./utils/trpc";
@@ -26,6 +27,7 @@ const clientRouter = createBrowserRouter([
         path: ":slug",
         loader: renderBlogLoader,
         element: <RenderBlog />,
+        errorElement: <RenderBlogErrorElement />,
       },
     ],
   },

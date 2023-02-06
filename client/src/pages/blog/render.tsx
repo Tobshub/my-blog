@@ -15,19 +15,19 @@ export default function RenderBlog() {
     if the server returns 504 show "something went wrong page"
     if the server returns 404 show "not found page"
   */
-  const { data: blog, isLoading } = trpc.posts.getPost.useQuery(
-    { slug },
-    {
-      // onSuccess(data) {
-      //   console.log(data);
-      // },
-    }
-  );
+  const {
+    data: blog,
+    isLoading,
+    error,
+    isError,
+  } = trpc.posts.getPost.useQuery({ slug });
 
-  if (isLoading) {
+  if (isLoading && !isError) {
     return <>Loading...</>;
   } else if (!blog) {
     throw new Error("this blog post does not exist... yet");
+  } else if (error) {
+    throw new Error(error.message);
   }
 
   return (
