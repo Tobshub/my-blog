@@ -3,14 +3,9 @@ import Page from "../../../layouts/Page";
 import { Solution } from "./types";
 
 const possibleSolutions: Solution[] = [
-  {
-    text: "Reload the page",
-    action: () => location.reload(),
-  },
-  {
-    text: "Go to the home page",
-    link: "/",
-  },
+  { text: "Reload the page", action: () => location.reload() },
+  { text: "Go to the home page", link: "/" },
+  { text: "View other blog posts", link: "/blog" },
 ];
 
 export default function RenderBlogErrorElement() {
@@ -28,7 +23,7 @@ export default function RenderBlogErrorElement() {
             </li>
           ) : (
             <li>
-              <button className="btn btn-link" onClick={solution.action}>
+              <button className="btn btn-link p-0" onClick={solution.action}>
                 {solution.text}
               </button>
             </li>
