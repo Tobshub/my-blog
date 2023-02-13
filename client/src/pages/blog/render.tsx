@@ -35,7 +35,7 @@ export default function RenderBlog() {
       mainStyles={{
         display: "block",
         textAlign: "left",
-        maxWidth: "750px",
+        maxWidth: "1000px",
         margin: "0 auto",
       }}
     >
