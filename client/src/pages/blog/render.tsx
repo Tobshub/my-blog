@@ -47,7 +47,7 @@ export default function RenderBlog() {
             width: 100%;
           }
         `}</style>
-      <h1>{blog.title}</h1>
+      <h1 style={{ textAlign: "center" }}>{blog.title}</h1>
       <div dangerouslySetInnerHTML={{ __html: blog.body }} />
     </Page>
   );
