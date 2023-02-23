@@ -5,7 +5,7 @@ import { env } from "../../../index";
 export async function genToken(salt: string) {
   try {
     if (env.JwtSecret) {
-      const token = jwt.sign({ salt, iat: Date.now() }, env.JwtSecret);
+      const token = jwt.sign({ salt, iat: Date.now() / 1000 }, env.JwtSecret);
       return { token };
     } else {
       throw new Error("Error: no jwt secret");
