@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host",
+    "dev": "vite",
     "build": "tsc && vite build",
     "preview": "yarn build && netlify deploy"
   },
@@ -32,4 +32,3 @@
     "vite": "^4.0.0"
   }
 }
-
