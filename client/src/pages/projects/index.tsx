@@ -43,16 +43,17 @@ type ProjectData = {
   updated_at: string;
 };
 
+// TODO: component styling
 function ProjectCard({ project }: { project: ProjectData }) {
   return (
     <div className="project-card">
       <a href={project.url}>
-        <p>{new Date(project.created_at).toLocaleDateString("en-GB")}</p>
+        <p>Start Date: {new Date(project.created_at).toLocaleDateString("en-GB")}</p>
         <div className="heading">
           <img src={project.owner.avatar_url} width={50} />
           <h2>{project.name}</h2>
         </div>
-        <p>{project.language}</p>
+        <p>Language: {project.language}</p>
         <p>{project.description}</p>
         <p>{project.topics.join(" | ")}</p>
       </a>

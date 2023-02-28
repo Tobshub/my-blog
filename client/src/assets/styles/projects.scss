@@ -11,12 +11,16 @@ section.projects {
     width: min(90%, 500px);
     padding: 0;
 
-    a {
+    > a {
       display: block;
       padding: 0.5rem 0.75rem;
       text-decoration: none;
       color: inherit;
       margin: 0;
+
+      > * {
+        margin: 0.25rem;
+      }
     }
 
     .heading {
