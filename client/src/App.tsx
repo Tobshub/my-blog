@@ -2,12 +2,13 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import { queryClient, trpcClient } from "./lib/query";
 import LoginPage from "./pages/auth/login";
-import BlogIndex, { loader as blogIndexLoader } from "./pages/blog";
+import BlogPage, { loader as blogIndexLoader } from "./pages/blog";
 import CreatePost, { loader as createPostLoader } from "./pages/blog/create";
 import RenderBlogErrorElement from "./pages/blog/errors/render-error";
 import RenderBlog, { loader as renderBlogLoader } from "./pages/blog/render";
 import HomePage from "./pages/home";
 import trpc from "./utils/trpc";
+import ProjectsPage from "./pages/projects";
 
 const clientRouter = createBrowserRouter([
   {
@@ -21,7 +22,7 @@ const clientRouter = createBrowserRouter([
       {
         index: true,
         loader: blogIndexLoader,
-        element: <BlogIndex />,
+        element: <BlogPage />,
       },
       {
         path: ":slug",
@@ -40,6 +41,10 @@ const clientRouter = createBrowserRouter([
     path: "/secret/login",
     element: <LoginPage />,
   },
+  {
+    path: "/projects",
+    element: <ProjectsPage />,
+  },
 ]);
 
 export default function App() {
@@ -51,4 +56,3 @@ export default function App() {
     </trpc.Provider>
   );
 }
-
