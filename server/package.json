@@ -8,6 +8,7 @@
     "start": "node dist/index.js"
   },
   "dependencies": {
+    "@octokit/core": "^4.2.0",
     "@prisma/client": "^4.9.0",
     "@trpc/server": "^10.9.1",
     "@types/node": "^18.11.18",

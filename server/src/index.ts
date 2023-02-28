@@ -12,6 +12,7 @@ export const env = {
   JwtSecret: process.env.JWT_SECRET,
   password: process.env.USER_PASSWORD,
   email: process.env.USER_EMAIL,
+  github: process.env.GITHUB_ACCESS_TOKEN,
 };
 
 const app = express();
