@@ -1,0 +1,35 @@
+section.projects {
+  display: flex;
+  flex-flow: wrap;
+  gap: 1.5rem;
+
+  .project-card {
+    background-color: var(--palette-background);
+    border: 4px outset;
+    border-image: linear-gradient(var(--palette-pink), var(--palette-cyan)) 15;
+    margin-block: 2rem;
+    width: min(90%, 500px);
+    padding: 0;
+
+    a {
+      display: block;
+      padding: 0.5rem 0.75rem;
+      text-decoration: none;
+      color: inherit;
+      margin: 0;
+    }
+
+    .heading {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      h2 {
+        text-transform: capitalize;
+      }
+
+      img {
+        border-radius: 50%;
+      }
+    }
+  }
+}
