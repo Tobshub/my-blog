@@ -1,8 +1,8 @@
-import octokit from "../../../config/github";
+import { env } from "../../..";
 
 export default async function listProjects(filterList: string[]) {
   try {
-    const res = await octokit.request("GET /user/repos?visibility=public&sort=updated", {
+    const res = await env.github.request("GET /user/repos?visibility=public&sort=updated", {
       headers: {
         "X-GitHub-Api-Version": "2022-11-28",
         accept: "application/vnd.github+json",

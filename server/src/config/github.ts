@@ -1,6 +1,5 @@
 import { Octokit } from "@octokit/core";
-import { env } from "..";
 
-const octokit = new Octokit({ auth: env.github });
+const octokit = (github_secret: string) => new Octokit({ auth: github_secret });
 
 export default octokit;
