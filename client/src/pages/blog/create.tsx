@@ -1,4 +1,3 @@
-import PageNavBar from "../../components/ui/navbar";
 import { LoaderFunctionArgs, redirect, useNavigate } from "react-router-dom";
 import { getToken } from "../../lib/store";
 import React, { useRef, useState } from "react";
@@ -28,6 +27,7 @@ export default function CreatePost() {
   const editorRef = useRef<ReactQuill>(null);
 
   const handleEditorChange = (value: string) => {
+    // console.log(value.slice(0, 10));
     setContent((state) => ({ ...state, body: value }));
     // save change in localstorage
     localStorage.setItem(
@@ -86,6 +86,15 @@ export default function CreatePost() {
       <TagsWithState tags={content.tags} setTags={handleTagsChange} />
       <div className="mb-5" style={{ height: "fit-content" }}>
         <ReactQuill
+          modules={{
+            toolbar: [
+              [{ header: [] }],
+              ["bold", "italic", "underline", "strike"],
+              ["blockquote", "code-block"],
+              ["link", "image"],
+              ["clean"],
+            ],
+          }}
           ref={editorRef}
           value={content.body}
           onChange={handleEditorChange}
