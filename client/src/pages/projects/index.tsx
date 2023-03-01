@@ -4,7 +4,7 @@ import trpc from "../../utils/trpc";
 
 export default function ProjectsPage() {
   const projects = trpc.projects.list.useQuery(undefined, {
-    onSuccess: (data) => console.log(data),
+//    onSuccess: (data) => console.log(data),
   });
 
   if (projects.error) {
