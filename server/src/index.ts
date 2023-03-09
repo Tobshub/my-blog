@@ -6,7 +6,6 @@ import { PrismaConnect } from "./config/prisma";
 import octokit from "./config/github";
 
 config(); /** load env variables */
-PrismaConnect() /** connect to mongodb with prisma */;
 
 export const env = {
   PORT: process.env.PORT,
@@ -30,6 +29,8 @@ app.use("/", (req, res) => {
 
 const port = env.PORT || 4040;
 
+
+PrismaConnect().then(() =>  /** connect to mongodb with prisma */;
 app.listen(port, () => {
   console.log(`live (port ${port})`);
-});
+}));
