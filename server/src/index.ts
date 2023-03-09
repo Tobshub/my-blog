@@ -29,8 +29,9 @@ app.use("/", (req, res) => {
 
 const port = env.PORT || 4040;
 
-
-PrismaConnect().then(() =>  /** connect to mongodb with prisma */;
-app.listen(port, () => {
-  console.log(`live (port ${port})`);
-}));
+/** connect to mongodb with prisma */;
+PrismaConnect().then(() => {
+  app.listen(port, () => {
+    console.log(`live (port ${port})`);
+  })
+});
