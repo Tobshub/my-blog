@@ -4,13 +4,6 @@ import "../../assets/styles/blog.scss";
 import { Link, LoaderFunctionArgs, useLoaderData } from "react-router-dom";
 import Page from "../../layouts/Page";
 
-export async function loader({ request }: LoaderFunctionArgs) {
-  const url = new URL(request.url);
-  const searchTitle = url.searchParams.get("title");
-  const searchTags = url.searchParams.getAll("tag");
-  return { searchTags, searchTitle };
-}
-
 export default function BlogPage() {
   const searchFilter = useLoaderData() as { searchTitle: string | null; searchTags: string[] } | undefined;
   // search with filter if it exists
@@ -20,7 +13,7 @@ export default function BlogPage() {
     ? trpc.posts.searchByTags.useQuery({ tags: searchFilter.searchTags })
     : trpc.posts.getRecentPosts.useQuery({ max: 20 });
   return (
-    <Page mainClassName={"d-flex flex-column"} mainStyles={{ gap: "4rem" }}>
+    <Page mainClassName={"d-flex flex-column"} mainStyles={{ gap: "4rem", width: "min(1000px, 100%)", margin: "0 auto" }}>
       {blogs.data && blogs.data.length ? (
         blogs.data.map((post) => (
           <div key={post.slug} style={{ textAlign: "left", display: "block", width: "100%" }}>

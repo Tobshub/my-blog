@@ -1,19 +1,9 @@
-import { LoaderFunctionArgs, redirect, useNavigate } from "react-router-dom";
-import { getToken } from "../../lib/store";
 import React, { useRef, useState } from "react";
 import trpc from "../../utils/trpc";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Page from "../../layouts/Page";
-
-export async function loader({}: LoaderFunctionArgs) {
-  const token = getToken();
-  if (!token) {
-    // TODO: redirect to not found page
-    return redirect("/secret/login");
-  }
-  return null;
-}
+import { useNavigate } from "react-router-dom";
 
 export default function CreatePost() {
   const [content, setContent] = useState(

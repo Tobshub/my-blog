@@ -1,11 +1,6 @@
-import { LoaderFunctionArgs, useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import Page from "../../layouts/Page";
 import trpc from "../../utils/trpc";
-
-export async function loader({ params }: LoaderFunctionArgs) {
-  const slug = params.slug;
-  return slug;
-}
 
 export default function RenderBlog() {
   const slug = useLoaderData() as string;

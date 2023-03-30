@@ -1,14 +1,20 @@
 import { QueryClientProvider } from "@tanstack/react-query";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import { queryClient, trpcClient } from "./lib/query";
-import LoginPage from "./pages/auth/login";
-import BlogPage, { loader as blogIndexLoader } from "./pages/blog";
-import CreatePost, { loader as createPostLoader } from "./pages/blog/create";
-import RenderBlogErrorElement from "./pages/blog/errors/render-error";
-import RenderBlog, { loader as renderBlogLoader } from "./pages/blog/render";
-import HomePage from "./pages/home";
+import {
+  blogIndexLoader,
+  createPostLoader,
+  renderBlogLoader,
+} from "./pages/loaders";
 import trpc from "./utils/trpc";
+import { lazy } from "react";
+import BlogPage from "./pages/blog";
 import ProjectsPage from "./pages/projects";
+import RenderBlog from "./pages/blog/render";
+import HomePage from "./pages/home";
+const RenderBlogErrorElement = lazy(() => import("./pages/blog/errors/render-error"));
+const CreatePost = lazy(() => import("./pages/blog/create"));
+const LoginPage = lazy(() => import("./pages/auth/login"));
 
 const clientRouter = createBrowserRouter([
   {
