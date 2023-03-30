@@ -53,21 +53,31 @@ export default function PageNavBar() {
           <style>{`
         header strong {color: var(--palette-cyan)}
       `}</style>
-          <h1 className="display-5">
-            <strong>{"<"}</strong>
-            <em> tobs_** </em>
-            <strong>{"/>"}</strong>
-          </h1>
-          <nav className="nav navbar">
-            {mode === "normal" ? <NormalNavBar setMode={setMode} /> : <SearchNavBar setMode={setMode} />}
-          </nav>
+          <div style={{display: "flex"}} className="nav-wrapper">
+            <h1 className="display-5 m-0">
+              <strong>{"<"}</strong>
+              <em> tobs_** </em>
+              <strong>{"/>"}</strong>
+            </h1>
+            <nav className="nav navbar">
+              {mode === "normal" ? (
+                <NormalNavBar setMode={setMode} />
+              ) : (
+                <SearchNavBar setMode={setMode} />
+              )}
+            </nav>
+          </div>
         </header>
       </IconContext.Provider>
     </>
   );
 }
 
-function NormalNavBar({ setMode }: { setMode: React.Dispatch<React.SetStateAction<"normal" | "search">> }) {
+function NormalNavBar({
+  setMode,
+}: {
+  setMode: React.Dispatch<React.SetStateAction<"normal" | "search">>;
+}) {
   return (
     <>
       <ul className="navbar-nav gap-4 fs-4 font-weight-bold mx-2">
@@ -83,7 +93,11 @@ function NormalNavBar({ setMode }: { setMode: React.Dispatch<React.SetStateActio
   );
 }
 
-function SearchNavBar({ setMode }: { setMode: React.Dispatch<React.SetStateAction<"normal" | "search">> }) {
+function SearchNavBar({
+  setMode,
+}: {
+  setMode: React.Dispatch<React.SetStateAction<"normal" | "search">>;
+}) {
   const navigate = useNavigate();
   const searchInput = useRef<HTMLInputElement>(null);
 
@@ -143,12 +157,19 @@ function NavItem(props: PropsWithChildren & { to: string }) {
         <NavHashLink
           smooth={true}
           to={props.to}
-          className={({ isActive }) => `nav-link text-reset px-3 ${isActive ? "active" : ""}`}
+          className={({ isActive }) =>
+            `nav-link text-reset px-3 ${isActive ? "active" : ""}`
+          }
         >
           {props.children}
         </NavHashLink>
       ) : (
-        <NavLink to={props.to} className={({ isActive }) => `nav-link text-reset px-3 ${isActive ? "active" : ""}`}>
+        <NavLink
+          to={props.to}
+          className={({ isActive }) =>
+            `nav-link text-reset px-3 ${isActive ? "active" : ""}`
+          }
+        >
           {props.children}
         </NavLink>
       )}
