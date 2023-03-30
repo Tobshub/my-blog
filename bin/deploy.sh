@@ -1,6 +1,6 @@
 #! /usr/bin/bash
 
-echo -e "Starting Client Deploy Sequence($1)\n"
+echo -e "Starting Client Deploy Sequence $1\n"
 
 cd client && yarn build
 
