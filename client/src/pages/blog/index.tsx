@@ -1,7 +1,6 @@
-import PageNavBar from "../../components/ui/navbar";
 import trpc from "../../utils/trpc";
 import "../../assets/styles/blog.scss";
-import { Link, LoaderFunctionArgs, useLoaderData } from "react-router-dom";
+import { Link,  useLoaderData } from "react-router-dom";
 import Page from "../../layouts/Page";
 
 export default function BlogPage() {
