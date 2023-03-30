@@ -1,0 +1,18 @@
+{
+  "name": "tobsblog",
+  "version": "1.0.0",
+  "description": "my portfolio & blog site",
+  "main": "index.js",
+  "repository": "https://github.com/Tobshub/my-blog.git",
+  "author": "Tobshub <tobanigeorge@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev:client": "cd client && yarn dev",
+    "dev:server": "cd server && yarn dev",
+    "concurrently:dev": "concurrently \"yarn:dev:*\"",
+    "dev": "./bin/dev-start.sh && yarn concurrently:dev"
+  },
+  "dependencies": {
+    "concurrently": "^8.0.1"
+  }
+}
