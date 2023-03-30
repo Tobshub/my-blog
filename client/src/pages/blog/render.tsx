@@ -23,7 +23,7 @@ export default function RenderBlog() {
   } = trpc.posts.getPost.useQuery({ slug });
 
   if (isLoading && !isError) {
-    return <>Loading...</>;
+    return <Page>Loading...</Page>;
   } else if (!blog) {
     throw new Error("This blog post does not exist... yet");
   } else if (error) {
