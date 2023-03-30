@@ -72,9 +72,8 @@ function NormalNavBar({ setMode }: { setMode: React.Dispatch<React.SetStateActio
     <>
       <ul className="navbar-nav gap-4 fs-4 font-weight-bold mx-2">
         <NavItem to="/#top">Home</NavItem>
-        <NavItem to="/#about">About</NavItem>
-        <NavItem to="/blog">Blog</NavItem>
         <NavItem to="/#contact-me">Contact Me</NavItem>
+        <NavItem to="/blog">Blog</NavItem>
         <NavItem to="/projects">Projects</NavItem>
       </ul>
       <div className="mx-2">
