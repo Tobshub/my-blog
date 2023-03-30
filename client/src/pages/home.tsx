@@ -23,7 +23,7 @@ import Page from "../layouts/Page";
 
 export default function HomePage() {
   return (
-    <Page mainClassName="d-flex" mainStyles={{ gap: "4rem" }}>
+    <Page mainClassName="d-flex" mainStyles={{ gap: "4rem", maxWidth: 1200, margin:  "0 auto" }}>
       <style>{`
         a {
           color: inherit;
@@ -43,6 +43,7 @@ export default function HomePage() {
           style={{
             objectFit: "cover",
             objectPosition: "center",
+            maxWidth: 525
           }}
         />
       </div>
@@ -55,11 +56,11 @@ export default function HomePage() {
             objectPosition: "center",
           }}
         />
-        <div className="d-flex w-100 px-5 flex-column align-items-end">
+        <div className="d-flex px-3 flex-column align-items-end">
           <h1 id="about" style={{ scrollMarginTop: "5rem" }}>
             About
           </h1>
-          <p style={{ fontWeight: 500 }}>
+          <p style={{ fontWeight: 500, maxWidth: 550 }}>
             My name is Tobani Esan-George (AKA Tobs). I love{" "}
             <a href="https://lichess.org/@/Tobani" title="send me a challenge">
               chess
