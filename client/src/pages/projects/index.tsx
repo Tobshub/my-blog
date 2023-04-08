@@ -1,27 +1,15 @@
 import "../../assets/styles/projects.scss";
 import Page from "../../layouts/Page";
-import trpc from "../../utils/trpc";
+import projects from "./data.json";
 
 export default function ProjectsPage() {
-  const projects = trpc.projects.list.useQuery(undefined, {
-    onSuccess: (data) => console.log(data),
-  });
-
-  if (projects.error) {
-    throw new Error(projects.error.message);
-  }
-
   return (
     <Page>
       <h1>Projects</h1>
       <section className="projects">
-        {projects.isLoading ? (
-          <p>Loading...</p>
-        ) : projects.data ? (
-          projects.data.map((project) => <ProjectCard key={project.id} project={project} />)
-        ) : (
-          <>:p</>
-        )}
+        {projects.map((project) => (
+          <ProjectCard key={project.id} project={project} />
+        ))}
       </section>
     </Page>
   );
@@ -32,7 +20,7 @@ type ProjectData = {
   description: string | null;
   topics: string[];
   url: string;
-  id: string;
+  id: number;
   language: string;
   name: string;
   owner: {
