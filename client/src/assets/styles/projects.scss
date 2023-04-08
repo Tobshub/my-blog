@@ -1,6 +1,7 @@
 section.projects {
   display: flex;
-  flex-flow: wrap;
+  flex-direction: column;
+  align-items: center;
   gap: 1.5rem;
 
   .project-card {
@@ -8,27 +9,32 @@ section.projects {
     border: 4px outset;
     border-image: linear-gradient(var(--palette-pink), var(--palette-cyan)) 15;
     margin-block: 2rem;
-    width: min(90%, 500px);
+    width: min(95%, 1000px);
     padding: 0;
 
-    a {
-      display: block;
+    .project-card-inner {
+      display: flex;
       padding: 0.5rem 0.75rem;
       text-decoration: none;
       color: inherit;
       margin: 0;
-    }
 
-    .heading {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
       h2 {
-        text-transform: capitalize;
+        margin-top: 1rem;
       }
 
       img {
-        border-radius: 50%;
+        max-width: min(100%, 550px);
+      }
+    }
+  }
+}
+
+@media (max-width: 850px) {
+  section.projects {
+    .project-card {
+      .project-card-inner {
+        flex-direction: column-reverse;
       }
     }
   }
