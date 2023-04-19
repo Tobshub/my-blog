@@ -50,4 +50,13 @@ export default [
     imageUrl: "https://tobsmg.onrender.com/img/p_jhu6nskahj",
     topics: ["image sharing", "nodejs", "cli", "pkg"],
   },
+  {
+    name: "Browser File System",
+    description:
+      "Browser File System is a simple file-system like storage for the browser",
+    url: "https://github.com/Tobshub/browser-file-system",
+    language: "Typescript",
+    imageUrl: "https://tobsmg.onrender.com/img/p_p1cfvzqkb9",
+    topics: ["file system", "npm package", "indexeddb"],
+  },
 ];
