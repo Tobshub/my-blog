@@ -14,6 +14,7 @@ section.projects {
 
     .project-card-inner {
       display: flex;
+      justify-content: space-between;
       padding: 0.5rem 0.75rem;
       text-decoration: none;
       color: inherit;
@@ -30,7 +31,7 @@ section.projects {
   }
 }
 
-@media (max-width: 850px) {
+@media (max-width: 1150px) {
   section.projects {
     .project-card {
       .project-card-inner {
