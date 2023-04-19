@@ -53,7 +53,7 @@ export default function PageNavBar() {
           <style>{`
         header strong {color: var(--palette-cyan)}
       `}</style>
-          <div style={{display: "flex"}} className="nav-wrapper">
+          <div style={{ display: "flex" }} className="nav-wrapper">
             <h1 className="display-5 m-0">
               <strong>{"<"}</strong>
               <em> tobs_** </em>
@@ -157,7 +157,7 @@ function NavItem(props: PropsWithChildren & { to: string }) {
         <NavHashLink
           smooth={true}
           to={props.to}
-          className={({ isActive }) =>
+          className={(isActive) =>
             `nav-link text-reset px-3 ${isActive ? "active" : ""}`
           }
         >
